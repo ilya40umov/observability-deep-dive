@@ -1,0 +1,10 @@
+management:
+  tracing:
+    enabled: true
+    baggage:
+      correlation:
+        fields: country, userId
+      # Q: why is this need in addition to the above setting?
+      remote-fields: country, userId
+    sampling:
+      probability: 1.0
