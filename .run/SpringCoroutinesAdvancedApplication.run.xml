@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SpringCoroutinesAdvancedApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <additionalParameters>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="spring.docker.compose.file" />
+        <option name="value" value="./spring-coroutines-advanced/compose.yaml" />
+      </param>
+    </additionalParameters>
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <module name="observability-deep-dive.spring-coroutines-advanced.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="me.ilya40umov.observability.SpringCoroutinesAdvancedApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="me.ilya40umov.observability.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
