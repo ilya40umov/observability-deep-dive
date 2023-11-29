@@ -1,5 +1,6 @@
 rootProject.name = "observability-deep-dive"
 
+include("logback-brave")
 include("spring-classic-simple")
 include("spring-coroutines-simple")
 include("spring-coroutines-advanced")
