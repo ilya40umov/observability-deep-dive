@@ -9,5 +9,8 @@ dependencies {
     implementation("io.zipkin.brave:brave")
     implementation("io.zipkin.brave:brave-context-slf4j")
 
+    implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
 }
 

@@ -11,7 +11,7 @@ import brave.propagation.ThreadLocalCurrentTraceContext
 import brave.sampler.Sampler
 
 object TracingFactory {
-    fun tracing(vararg baggageFields: BaggageField) =
+    fun tracing(vararg baggageFields: BaggageField): Tracing =
         Tracing.newBuilder()
             .sampler(Sampler.NEVER_SAMPLE)
             .currentTraceContext(
