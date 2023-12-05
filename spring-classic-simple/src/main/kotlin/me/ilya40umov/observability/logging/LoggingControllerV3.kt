@@ -5,7 +5,6 @@ import io.micrometer.tracing.Tracer
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import me.ilya40umov.observability.Greeting
-import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

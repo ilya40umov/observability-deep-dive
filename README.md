@@ -1,8 +1,19 @@
 # Observability Deep Dive
 
-## Links
+## Modules
 
-* [Tracing in Spring Boot 3 WebFlux](https://betterprogramming.pub/tracing-in-spring-boot-3-webflux-d432d0c78d3e)
-* [Observability with Spring Boot 3](https://spring.io/blog/2022/10/12/observability-with-spring-boot-3)
-* [Distributed Tracing Reference Guide](https://micrometer.io/docs/tracing)
-* [Getting Started with Distributed Tracing](https://docs.spring.io/spring-boot/docs/3.1.5/reference/html/actuator.html#actuator.micrometer-tracing.getting-started)
+* [logback-brave](logback-brave)
+* [spring-classic-simple](spring-classic-simple)
+* [spring-coroutines-simple](spring-coroutines-simple)
+* [spring-coroutines-advanced](spring-coroutines-advanced)
+
+## TODOs
+
+* [ ] Finish working on `logback-brave`
+* [ ] Create a new module to experiment with OpenTelemetry (instead of Brave)
+* [ ] Migrate Spring-based modules to OpenTelemetry
+* [ ] Finish working on `spring-classic-simple`
+* [ ] Finish working on `spring-coroutines-simple`
+* [ ] Finish working on `spring-coroutines-advanced`
+* [ ] Come back to the topic of metrics
+* [ ] Try running SigNoz in Docker & report traces/metrics/logs there

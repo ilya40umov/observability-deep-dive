@@ -1,6 +1,13 @@
 # logback-brave
 
-This module is showcasing how to use the low level APIs from Slf4j (implemented by Logback) and Brave.
+This module is showcasing how to use the low level APIs from Slf4j / Logback, Brave and Micrometer.
+
+## TODOs
+
+* [ ] Context propagation with Coroutines + Brave
+* [ ] Context propagation with Project Reactor + Brave
+* [ ] Context propagation with Coroutines + Micrometer (using Brave bridge)
+* [ ] Context propagation with Project Reactor + Micrometer (using Brave bridge)
 
 ## Links 
 
@@ -15,6 +22,8 @@ This module is showcasing how to use the low level APIs from Slf4j (implemented 
 ### Coroutines & MDC
 
 * https://github.com/Kotlin/kotlinx.coroutines/tree/master/integration/kotlinx-coroutines-slf4j
+* https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/as-context-element.html
+* https://github.com/openzipkin/brave/issues/820
 
 ### Context Propagation With Project Reactor
 
