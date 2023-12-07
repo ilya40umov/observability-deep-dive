@@ -2,6 +2,7 @@ package me.ilya40umov.observability
 
 import brave.baggage.BaggageField
 import me.ilya40umov.observability.helpers.TracingFactory
+import me.ilya40umov.observability.models.UserData
 import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -12,14 +13,9 @@ private val userIdBaggage = BaggageField.create("userId")
 private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
 private val tracer = tracing.tracer()
 
-private val logger = LoggerFactory.getLogger("BraveBaggageMainV2")
+private val logger = LoggerFactory.getLogger("BraveBaggageClassicV2")
 
 fun main() {
-    data class UserData(
-        val userId: String,
-        val country: String
-    )
-
     logger.info("Entering main()")
     try {
         val pool1 = tracing.currentTraceContext().executorService(

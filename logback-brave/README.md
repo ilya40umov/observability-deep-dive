@@ -2,13 +2,6 @@
 
 This module is showcasing how to use the low level APIs from Slf4j / Logback, Brave and Micrometer.
 
-## TODOs
-
-* [ ] Context propagation with Coroutines + Brave
-* [ ] Context propagation with Project Reactor + Brave
-* [ ] Context propagation with Coroutines + Micrometer (using Brave bridge)
-* [ ] Context propagation with Project Reactor + Micrometer (using Brave bridge)
-
 ## Links 
 
 ### Logback
@@ -27,7 +20,6 @@ This module is showcasing how to use the low level APIs from Slf4j / Logback, Br
 
 ### Context Propagation With Project Reactor
 
-* https://micrometer.io/docs/tracing
 * https://micrometer.io/docs/contextPropagation
 * https://spring.io/blog/2023/03/28/context-propagation-with-project-reactor-1-the-basics/
 * https://spring.io/blog/2023/03/29/context-propagation-with-project-reactor-2-the-bumpy-road-of-spring-cloud/

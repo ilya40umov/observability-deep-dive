@@ -12,5 +12,8 @@ dependencies {
     implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.6.4"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
+
+    implementation("io.projectreactor:reactor-core:3.5.11")
+    implementation("io.micrometer:context-propagation:1.0.6")
 }
 

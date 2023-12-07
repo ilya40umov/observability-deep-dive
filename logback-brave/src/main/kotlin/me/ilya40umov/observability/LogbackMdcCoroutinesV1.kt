@@ -11,7 +11,7 @@ import org.slf4j.MDC
 import java.util.UUID
 import kotlin.time.Duration.Companion.milliseconds
 
-private val logger = LoggerFactory.getLogger("CoroutinesMdcMain")
+private val logger = LoggerFactory.getLogger("LogbackMdcCoroutinesV1")
 
 fun main(): Unit = runBlocking {
     MDC.put("traceId", UUID.randomUUID().toString())
