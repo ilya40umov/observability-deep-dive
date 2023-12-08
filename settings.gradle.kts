@@ -4,6 +4,7 @@ include("logback-brave")
 include("spring-classic-simple")
 include("spring-coroutines-simple")
 include("spring-coroutines-advanced")
+include("spring-co-web-filter")
 
 pluginManagement {
     repositories {
