@@ -21,19 +21,16 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
 @RestController
-class LoggingControllerV1(
-    private val observationRegistry: ObservationRegistry
-) {
+class LoggingControllerV1 {
 
     private val logger = LoggerFactory.getLogger(LoggingControllerV1::class.java)
 
     @GetMapping("/v1/hello")
     suspend fun hello(): Greeting {
-        // XXX with Spring Boot 3.2.0-SNAPSHOT observationRegistry.asContextElement() can be moved to CoWebFilter
-        withContext(observationRegistry.asContextElement()) {
-            logger.info("hello() was called")
-            method1()
-        }
+        // XXX prior to Spring Boot 3.2.0 it was necessary to wrap this into `observationRegistry.asContextElement()`,
+        //  but since Spring Boot 3.2.0 it can now be done in CoWebFilter
+        logger.info("hello() was called")
+        method1()
         return Greeting()
     }
 
@@ -61,11 +58,11 @@ class LoggingControllerV1(
                 return chain.filter(exchange)
             }
 
-            tracer.createBaggageInScope("country", "Middle Earth").use {
-                tracer.createBaggageInScope("userId", "Saruman").use {
-                    // XXX this only works since Spring Boot 3.2.0-SNAPSHOT,
-                    //  however, now with Spring Boot 3.2.0-SNAPSHOT baggage fields don't show up in the logs anymore
-                    withContext(observationRegistry.asContextElement()) {
+            withContext(observationRegistry.asContextElement()) {
+                // XXX outside of this block {tracer.currentTraceContext().context()} is null
+                //  so setting baggage has to happen within this block
+                tracer.createBaggageInScope("country", "Middle Earth").use {
+                    tracer.createBaggageInScope("userId", "Saruman").use {
                         logger.info("Before chain.filter()")
                         chain.filter(exchange)
                         logger.info("After chain.filter()")

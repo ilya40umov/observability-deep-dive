@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    // TODO change to 3.2.0-SNAPSHOT here to apply across the project
-    id("org.springframework.boot") version "3.1.5" apply false
+    id("org.springframework.boot") version "3.2.0" apply false
     id("io.spring.dependency-management") version "1.1.3" apply false
     kotlin("jvm") version "1.8.22" apply false
     kotlin("plugin.spring") version "1.8.22" apply false
