@@ -11,7 +11,7 @@ import org.springframework.web.server.CoWebFilterChain
 import org.springframework.web.server.ServerWebExchange
 
 @Component
-class BaggageAddingFilter(
+class  BaggageAddingFilter(
     private val observationRegistry: ObservationRegistry,
     private val tracer: Tracer
 ) : CoWebFilter() {
@@ -23,9 +23,9 @@ class BaggageAddingFilter(
             return chain.filter(exchange)
         }
 
+        // XXX we could call tracer.createBaggageInScope() before going into withContext(..),
+        //  but then once we are out of withContext(..) the tracing context seems to be lost
         withContext(observationRegistry.asContextElement()) {
-            // XXX outside of this block {tracer.currentTraceContext().context()} is null
-            //  so setting baggage has to happen within this block
             tracer.createBaggageInScope("country", "Middle Earth").use {
                 tracer.createBaggageInScope("userId", "Saruman").use {
                     logger.info("Before chain.filter()")

@@ -31,7 +31,7 @@ private class TracingContextElement(
     companion object Key : CoroutineContext.Key<TracingContextElement>
 
     override fun updateThreadContext(context: CoroutineContext): CurrentTraceContext.Scope {
-        return currentTraceContext.maybeScope(initial);
+        return currentTraceContext.maybeScope(initial)
     }
 
     override fun restoreThreadContext(context: CoroutineContext, oldState: CurrentTraceContext.Scope) {

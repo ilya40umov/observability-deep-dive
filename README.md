@@ -9,7 +9,6 @@
 
 ## TODOs
 
-* [ ] Finish working on `logback-brave`
 * [ ] Create a new module to experiment with OpenTelemetry (instead of Brave)
 * [ ] Migrate Spring-based modules to OpenTelemetry
 * [ ] Finish working on `spring-classic-simple`

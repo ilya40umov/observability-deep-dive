@@ -1,20 +1,12 @@
 package me.ilya40umov.observability.logging
 
-import io.micrometer.core.instrument.kotlin.asContextElement
-import io.micrometer.observation.ObservationRegistry
-import io.micrometer.tracing.Tracer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.reactor.awaitSingleOrNull
-import kotlinx.coroutines.withContext
 import me.ilya40umov.observability.Greeting
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.server.CoWebFilter
-import org.springframework.web.server.CoWebFilterChain
-import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 import java.time.Duration
 import java.util.concurrent.CompletableFuture
