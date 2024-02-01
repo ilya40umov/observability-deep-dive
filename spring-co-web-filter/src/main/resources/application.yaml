@@ -1,9 +1,0 @@
-management:
-  tracing:
-    enabled: true
-    baggage:
-      correlation:
-        fields: country, userId
-      remote-fields: country, userId
-    sampling:
-      probability: 1.0

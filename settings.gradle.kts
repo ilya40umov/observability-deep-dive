@@ -1,10 +1,10 @@
 rootProject.name = "observability-deep-dive"
 
-include("logback-brave")
-include("spring-classic-simple")
-include("spring-coroutines-simple")
-include("spring-coroutines-advanced")
-include("spring-co-web-filter")
+include("01-logback-mdc")
+include("02-logback-brave")
+include("03-logback-otel")
+include("04-spring-classic-simple")
+include("05-spring-coroutines-simple")
 
 pluginManagement {
     repositories {

@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.2.1" apply false
+    id("org.springframework.boot") version "3.2.2" apply false
     id("io.spring.dependency-management") version "1.1.4" apply false
     kotlin("jvm") version "1.9.22" apply false
     kotlin("plugin.spring") version "1.9.22" apply false
@@ -27,6 +27,15 @@ subprojects {
         named("compileOnly") {
             extendsFrom(named("annotationProcessor").get())
         }
+    }
+    dependencies {
+        "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
+        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
+        "implementation"(platform("io.opentelemetry:opentelemetry-bom:1.31.0"))
+        "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:1.31.0-alpha"))
+        "implementation"("ch.qos.logback:logback-classic:1.4.12")
+        "implementation"("io.projectreactor:reactor-core:3.6.2")
+        "implementation"("io.micrometer:context-propagation:1.1.0")
     }
     tasks {
         withType<KotlinCompile> {

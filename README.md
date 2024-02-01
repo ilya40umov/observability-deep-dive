@@ -2,17 +2,13 @@
 
 ## Modules
 
-* [logback-brave](logback-brave)
-* [spring-classic-simple](spring-classic-simple)
-* [spring-coroutines-simple](spring-coroutines-simple)
-* [spring-coroutines-advanced](spring-coroutines-advanced)
+* [01-logback-mdc](01-logback-mdc)
+* [02-logback-brave](02-logback-brave)
+* [03-logback-otel](03-logback-otel)
+* [04-spring-classic-simple](04-spring-classic-simple)
+* [05-spring-coroutines-simple](05-spring-coroutines-simple)
 
 ## TODOs
 
-* [ ] Create a new module to experiment with OpenTelemetry (instead of Brave)
-* [ ] Migrate Spring-based modules to OpenTelemetry
-* [ ] Finish working on `spring-classic-simple`
-* [ ] Finish working on `spring-coroutines-simple`
-* [ ] Finish working on `spring-coroutines-advanced`
-* [ ] Come back to the topic of metrics
+* [ ] Finish implementing Otel module
 * [ ] Try running SigNoz in Docker & report traces/metrics/logs there
