@@ -33,6 +33,10 @@ fun main() = runBlocking {
             UserData(userId = "Pippin", country = "The Shire")
         ).map { (userId, country) ->
             val trace = tracer.newTrace()
+                .name("BraveCoroutinesV1")
+                .tag("userId", userId)
+                .tag("country", country)
+                .start()
             userIdBaggage.updateValue(trace.context(), userId)
             countryBaggage.updateValue(trace.context(), country)
 

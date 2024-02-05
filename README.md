@@ -7,8 +7,3 @@
 * [03-logback-otel](03-logback-otel)
 * [04-spring-classic-simple](04-spring-classic-simple)
 * [05-spring-coroutines-simple](05-spring-coroutines-simple)
-
-## TODOs
-
-* [ ] Finish implementing Otel module
-* [ ] Try running SigNoz in Docker & report traces/metrics/logs there

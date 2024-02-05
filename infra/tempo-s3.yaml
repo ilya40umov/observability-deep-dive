@@ -1,0 +1,42 @@
+server:
+  http_listen_port: 3200
+
+distributor:
+  receivers:
+    zipkin:
+    otlp:
+      protocols:
+        http:
+        grpc:
+
+  log_received_spans:
+    enabled: true
+    include_all_attributes: true
+    filter_by_status_error: false
+
+
+metrics_generator:
+  registry:
+    external_labels:
+      source: tempo
+      cluster: docker-compose
+  storage:
+    path: /tmp/tempo/generator/wal
+    remote_write:
+      - url: http://prometheus:9090/api/v1/write
+        send_exemplars: true
+
+storage:
+  trace:
+    backend: s3
+    wal:
+      path: /tmp/tempo/wal
+    s3:
+      bucket: tempo-data
+      endpoint: minio:9000
+      access_key: observability
+      secret_key: supersecret
+      insecure: true
+
+overrides:
+  metrics_generator_processors: [service-graphs, span-metrics]

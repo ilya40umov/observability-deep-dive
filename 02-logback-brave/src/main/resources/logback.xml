@@ -1,12 +1,31 @@
 <configuration>
 
+    <shutdownHook/>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{traceId:-}] [%X{country:-}] [%X{userId:-}] -%kvp- %msg%n</pattern>
         </encoder>
     </appender>
 
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <http>
+            <url>http://localhost:3100/loki/api/v1/push</url>
+            <tenantId>single-tenant</tenantId>
+        </http>
+        <format>
+            <label>
+                <pattern>app=01-logback-mdc,logger=$logger{36},level=%level,traceId=%mdc{traceId:-none},country=%mdc{country:-none},userId=%mdc{userId:-none}</pattern>
+            </label>
+            <message>
+                <pattern>[%thread] %-5level | %msg %ex</pattern>
+            </message>
+            <sortByTime>true</sortByTime>
+        </format>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOKI" />
     </root>
 </configuration>

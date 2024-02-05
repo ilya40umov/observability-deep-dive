@@ -12,6 +12,10 @@ This module is showcasing how to use the MDC API from Slf4j / Logback.
 
 * https://logback.qos.ch/manual/
 
+### Loki4j Logback
+
+* https://loki4j.github.io/loki-logback-appender/docs/configuration
+
 ### Coroutines & MDC
 
 * https://github.com/Kotlin/kotlinx.coroutines/tree/master/integration/kotlinx-coroutines-slf4j

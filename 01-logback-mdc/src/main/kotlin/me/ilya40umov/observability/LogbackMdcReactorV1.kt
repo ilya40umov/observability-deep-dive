@@ -40,8 +40,8 @@ fun main() {
             .contextWrite { context ->
                 context
                     .put("traceId", generateTraceId())
-                    .put("country", "USA")
-                    .put("userId", "George Washington")
+                    .put("country", "Earth")
+                    .put("userId", "Faye Valentine")
             }
             .blockLast()
     } finally {

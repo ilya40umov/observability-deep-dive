@@ -9,11 +9,23 @@ import brave.context.slf4j.MDCScopeDecorator
 import brave.propagation.B3Propagation
 import brave.propagation.ThreadLocalCurrentTraceContext
 import brave.sampler.Sampler
+import zipkin2.reporter.brave.AsyncZipkinSpanHandler
+import zipkin2.reporter.urlconnection.URLConnectionSender
 
 object TracingFactory {
-    fun tracing(vararg baggageFields: BaggageField): Tracing =
-        Tracing.newBuilder()
-            .sampler(Sampler.NEVER_SAMPLE)
+    fun tracing(vararg baggageFields: BaggageField): Tracing {
+        val sender = URLConnectionSender.create("http://localhost:9411/api/v2/spans")
+        val zipkinSpanHandler = AsyncZipkinSpanHandler.create(sender)
+        Runtime.getRuntime().addShutdownHook(
+            Thread {
+                zipkinSpanHandler.flush()
+                zipkinSpanHandler.close()
+            }
+        )
+        return Tracing.newBuilder()
+            .localServiceName("02-logback-brave")
+            .sampler(Sampler.ALWAYS_SAMPLE)
+            .addSpanHandler(zipkinSpanHandler)
             .currentTraceContext(
                 ThreadLocalCurrentTraceContext
                     .newBuilder()
@@ -39,5 +51,5 @@ object TracingFactory {
                     .build()
             )
             .build()
-
+    }
 }

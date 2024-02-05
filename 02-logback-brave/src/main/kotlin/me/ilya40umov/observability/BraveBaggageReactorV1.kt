@@ -42,14 +42,18 @@ fun main(): Unit = runBlocking {
             UserData(userId = "Aratar", country = "Valinor"),
             UserData(userId = "Irmo", country = "Valinor"),
             UserData(userId = "Tulkas", country = "Valinor")
-        ).map { user ->
+        ).map { (userId, country) ->
             val trace = tracer.newTrace()
-            userIdBaggage.updateValue(trace.context(), user.userId)
-            countryBaggage.updateValue(trace.context(), user.country)
+                .name("BraveReactorV1")
+                .tag("userId", userId)
+                .tag("country", country)
+                .start()
+            userIdBaggage.updateValue(trace.context(), userId)
+            countryBaggage.updateValue(trace.context(), country)
 
             tracer.withSpanInScope(trace).use {
                 val braveTraceContext = tracing.currentTraceContext().get()
-                Flux.just(user)
+                Flux.just(UserData(userId, country))
                     .subscribeOn(Schedulers.parallel())
                     .doOnNext { logger.info("Processing - Phase 1.") }
                     .delayElements(Duration.ofMillis(10))

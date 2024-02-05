@@ -1,5 +1,6 @@
 package me.ilya40umov.observability
 
+import brave.Span
 import brave.baggage.BaggageField
 import me.ilya40umov.observability.helper.TracingFactory
 import me.ilya40umov.observability.model.UserData
@@ -26,14 +27,18 @@ fun main() {
         )
 
         listOf(
-            UserData(userId = "SpacePirate1", country = "Inner Space"),
-            UserData(userId = "SpacePirate2", country = "Inner Space"),
-            UserData(userId = "SpacePirate3", country = "Inner Space"),
-            UserData(userId = "Stitch1", country = "Outer Space"),
-            UserData(userId = "Stitch2", country = "Outer Space"),
-            UserData(userId = "Stitch3", country = "Outer Space")
+            UserData(userId = "The Little Prince", country = "Asteroid B 612"),
+            UserData(userId = "The King", country = "Asteroid 325"),
+            UserData(userId = "Vain Man", country = "Asteroid 326"),
+            UserData(userId = "The Geographer", country = "Asteroid 330"),
+            UserData(userId = "The Pilot", country = "Earth"),
+            UserData(userId = "The Fox", country = "Earth")
         ).forEach { (userId, country) ->
             val trace = tracer.newTrace()
+                .name("BraveClassicV2")
+                .tag("userId", userId)
+                .tag("country", country)
+                .start()
             userIdBaggage.updateValue(trace.context(), userId)
             countryBaggage.updateValue(trace.context(), country)
 

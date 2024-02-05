@@ -21,8 +21,8 @@ fun main(): Unit = runBlocking {
             MDCContext(
                 mapOf(
                     "traceId" to generateTraceId(),
-                    "country" to "India",
-                    "userId" to "Mahatma Gandhi"
+                    "country" to "Mars",
+                    "userId" to "Spike Spiegel"
                 )
             )
         ) {

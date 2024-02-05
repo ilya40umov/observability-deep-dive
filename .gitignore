@@ -37,3 +37,6 @@ out/
 
 ### Vim ###
 *.swp
+
+### Infra ###
+infra/.data

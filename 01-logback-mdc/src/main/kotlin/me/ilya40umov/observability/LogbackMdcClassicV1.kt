@@ -11,7 +11,7 @@ fun main() {
     MDC.put("traceId", generateTraceId())
     logger.info("Entering main()")
     try {
-        processUserDataV1(UserData(userId = "Incognito", country = "Inner Space"))
+        processUserDataV1(UserData(userId = "Lilo", country = "Inner Space"))
         logger.info("Going for another user.")
         processUserDataV2(UserData(userId = "Stitch", country = "Outer Space"))
     } finally {
