@@ -33,10 +33,13 @@ subprojects {
         "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:1.31.0"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:1.31.0-alpha"))
-        "implementation"("ch.qos.logback:logback-classic:1.4.12")
-        "implementation"("io.projectreactor:reactor-core:3.6.2")
-        "implementation"("io.micrometer:context-propagation:1.1.0")
-        "implementation"("com.github.loki4j:loki-logback-appender:1.4.2")
+        constraints {
+            "implementation"("ch.qos.logback:logback-classic:1.4.12")
+            "implementation"("com.github.loki4j:loki-logback-appender:1.4.2")
+            "implementation"("io.projectreactor:reactor-core:3.6.2")
+            "implementation"("io.micrometer:context-propagation:1.1.0")
+            "implementation"("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:1.31.0-alpha")
+        }
     }
     tasks {
         withType<KotlinCompile> {

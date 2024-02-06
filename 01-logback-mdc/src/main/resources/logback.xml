@@ -15,10 +15,10 @@
         </http>
         <format>
             <label>
-                <pattern>app=01-logback-mdc,logger=%logger,level=%level,traceId=%mdc{traceId:-none},country=%mdc{country:-none},userId=%mdc{userId:-none}</pattern>
+                <pattern>app=01-logback-mdc,level=%level,country=%mdc{country:-none}</pattern>
             </label>
             <message>
-                <pattern>[%thread] %-5level | %msg %ex</pattern>
+                <pattern>[%thread] %-5level %logger{36} [%X{traceId:-}] [%X{userId:-}] | %msg %ex</pattern>
             </message>
             <sortByTime>true</sortByTime>
         </format>

@@ -203,13 +203,13 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum(count_over_time({app=\"01-logback-mdc\"}[1m])) by (userId)",
+          "expr": "sum(count_over_time({app=\"01-logback-mdc\"}[1m])) by (level)",
           "hide": false,
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Log Records By UserId",
+      "title": "Log Records By Level",
       "type": "timeseries"
     },
     {
@@ -250,12 +250,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "userId"
+              "options": "level"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 142
+                "value": 133
               }
             ]
           },
@@ -268,18 +268,6 @@
               {
                 "id": "custom.width",
                 "value": 133
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "traceId"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 156
               }
             ]
           },
@@ -345,9 +333,8 @@
               "names": [
                 "Time",
                 "Line",
-                "country",
-                "traceId",
-                "userId"
+                "level",
+                "country"
               ]
             }
           }
@@ -358,11 +345,10 @@
             "excludeByName": {},
             "includeByName": {},
             "indexByName": {
-              "Line": 4,
+              "Line": 3,
               "Time": 0,
               "country": 2,
-              "traceId": 1,
-              "userId": 3
+              "level": 1
             },
             "renameByName": {}
           }

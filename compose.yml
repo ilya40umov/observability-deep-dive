@@ -36,10 +36,11 @@ services:
     image: grafana/tempo:2.3.1
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
-      - ./infra/tempo-s3.yaml:/etc/tempo.yaml
+      - ./infra/tempo-config.yaml:/etc/tempo.yaml
       - ./infra/.data/tempo:/tmp/tempo
     ports:
       - "9411:9411"  # zipkin
+      - "4317:4317"  # OTLP
       - "3200:3200"  # tempo
     restart: on-failure
     depends_on:

@@ -1,6 +1,5 @@
 package me.ilya40umov.observability
 
-import brave.Span
 import brave.baggage.BaggageField
 import me.ilya40umov.observability.helper.TracingFactory
 import me.ilya40umov.observability.model.UserData
