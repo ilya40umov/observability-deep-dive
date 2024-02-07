@@ -32,12 +32,12 @@ class HelloControllerV3(
         private val tracer: Tracer
     ) : WebMvcConfigurer {
         override fun addInterceptors(registry: InterceptorRegistry) {
-            registry.addInterceptor(BaggageAddingInterceptor(tracer))
+            registry.addInterceptor(UserAddingInterceptor(tracer))
                 .addPathPatterns("/v3/hello")
         }
     }
 
-    class BaggageAddingInterceptor(
+    class UserAddingInterceptor(
         private val tracer: Tracer
     ) : HandlerInterceptor {
         override fun preHandle(
@@ -46,14 +46,12 @@ class HelloControllerV3(
             handler: Any
         ): Boolean {
             val user = UserData(userId = "Legolas", country = "Mirkwood")
-            request.setAttribute("user", user)
-            request.setAttribute(
-                "extra_baggage",
-                listOf(
-                    tracer.createBaggageInScope("userId", user.userId),
-                    tracer.createBaggageInScope("country", user.country)
-                )
+            val baggage = listOf(
+                tracer.createBaggageInScope("userId", user.userId),
+                tracer.createBaggageInScope("country", user.country)
             )
+            request.setAttribute("user", user)
+            request.setAttribute("extra_baggage", baggage)
             return true
         }
 

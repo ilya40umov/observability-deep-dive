@@ -2,13 +2,10 @@
 
 This project is testing observability APIs in a coroutines / reactive setup.
 
-* [LoggingControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/LoggingControllerV1.kt)
-* [LoggingCoRouterV1.kt](src/main/kotlin/me/ilya40umov/observability/LoggingCoRouterV1.kt)
-
-
-## Some interesting classes
-* `org.springframework.web.filter.reactive.ServerHttpObservationFilter`
-* `org.springframework.boot.actuate.autoconfigure.observation.web.reactive.WebFluxObservationAutoConfiguration`
+* [build.gradle.kts](build.gradle.kts)
+* [HelloControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV1.kt)
+* [AlohaCoRouterV1.kt](src/main/kotlin/me/ilya40umov/observability/AlohaCoRouterV1.kt)
+* [UserAddingFilter.kt](src/main/kotlin/me/ilya40umov/observability/UserAddingFilter.kt)
 
 ## Links
 
