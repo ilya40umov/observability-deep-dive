@@ -4,10 +4,12 @@ import io.micrometer.tracing.BaggageInScope
 import io.micrometer.tracing.Tracer
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import me.ilya40umov.observability.service.LoggingService
+import me.ilya40umov.observability.service.HelloService
 import me.ilya40umov.observability.model.Greeting
+import me.ilya40umov.observability.model.UserData
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestAttribute
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.HandlerInterceptor
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
@@ -15,14 +17,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @RestController
-class LoggingControllerV3(
-    private val loggingService: LoggingService
+class HelloControllerV3(
+    private val helloService: HelloService
 ) {
 
     @GetMapping("/v3/hello")
-    fun hello(): Greeting {
-        loggingService.method1()
-        return Greeting()
+    fun hello(@RequestAttribute("user") user: UserData): Greeting {
+        return helloService.sayHelloTo(user)
     }
 
     @EnableWebMvc
@@ -44,11 +45,13 @@ class LoggingControllerV3(
             response: HttpServletResponse,
             handler: Any
         ): Boolean {
+            val user = UserData(userId = "Legolas", country = "Mirkwood")
+            request.setAttribute("user", user)
             request.setAttribute(
                 "extra_baggage",
                 listOf(
-                    tracer.createBaggageInScope("userId", "Legolas"),
-                    tracer.createBaggageInScope("country", "Mirkwood")
+                    tracer.createBaggageInScope("userId", user.userId),
+                    tracer.createBaggageInScope("country", user.country)
                 )
             )
             return true

@@ -9,15 +9,20 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.micrometer:micrometer-tracing-bridge-brave")
-    // XXX there is an issue with V2 and using Otel => needs to be investigated
-    //implementation("io.micrometer:micrometer-tracing-bridge-otel")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
+
+    implementation("com.github.loki4j:loki-logback-appender")
+
+    implementation("io.micrometer:micrometer-tracing-bridge-brave")
+    implementation("io.zipkin.reporter2:zipkin-sender-urlconnection")
+    implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+    // implementation("io.micrometer:micrometer-tracing-bridge-otel")
+    // implementation("io.opentelemetry:opentelemetry-exporter-otlp")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

@@ -1,5 +1,5 @@
-### Logging V1
+### Hello V1
 GET http://localhost:8080/v1/hello
 
-### Logging V2
+### Aloha V1
 GET http://localhost:8080/v1/aloha

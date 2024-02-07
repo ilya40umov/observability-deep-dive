@@ -2,9 +2,10 @@
 
 This project is showcasing Micrometer APIs using classic thread-per-request approach.
 
-* [LoggingControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/LoggingControllerV1.kt)
-* [LoggingControllerV2.kt](src/main/kotlin/me/ilya40umov/observability/LoggingControllerV2.kt)
-* [LoggingControllerV3.kt](src/main/kotlin/me/ilya40umov/observability/LoggingControllerV3.kt)
+* [build.gradle.kts](build.gradle.kts)
+* [HelloControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV1.kt)
+* [HelloControllerV2.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV2.kt)
+* [HelloControllerV3.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV3.kt)
 
 ## Links
 

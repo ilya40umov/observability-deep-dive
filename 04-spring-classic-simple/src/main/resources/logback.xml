@@ -1,5 +1,7 @@
 <configuration>
 
+    <shutdownHook/>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -8,7 +10,26 @@
         </encoder>
     </appender>
 
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <batchMaxItems>100</batchMaxItems>
+        <batchTimeoutMs>5000</batchTimeoutMs>
+        <http>
+            <url>http://localhost:3100/loki/api/v1/push</url>
+            <tenantId>single-tenant</tenantId>
+        </http>
+        <format>
+            <label>
+                <pattern>app=04-spring-classic-simple,level=%level,country=%mdc{country:-none}</pattern>
+            </label>
+            <message>
+                <pattern>[%thread] %-5level %logger{36} [%X{traceId:-}] [%X{userId:-}] | %msg %ex</pattern>
+            </message>
+            <sortByTime>true</sortByTime>
+        </format>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="LOKI" />
     </root>
 </configuration>
