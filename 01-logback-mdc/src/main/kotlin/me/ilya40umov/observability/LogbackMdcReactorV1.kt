@@ -12,7 +12,6 @@ import java.time.Duration
 private val logger = LoggerFactory.getLogger("LogbackMdcReactorV1")
 
 fun main() {
-    MDC.put("traceId", generateTraceId())
     logger.info("Entering main()")
 
     Hooks.enableAutomaticContextPropagation()
@@ -26,25 +25,23 @@ fun main() {
             )
     }
 
-    try {
-        Flux.just("Hello World!")
-            .subscribeOn(Schedulers.parallel())
-            .map { message ->
-                logger.info("Phase 1: $message")
-                "$message was processed."
-            }
-            .delayElements(Duration.ofMillis(10))
-            .map { message ->
-                logger.info("Phase 2: $message")
-            }
-            .contextWrite { context ->
-                context
-                    .put("traceId", generateTraceId())
-                    .put("country", "Earth")
-                    .put("userId", "Faye Valentine")
-            }
-            .blockLast()
-    } finally {
-        logger.info("Leaving main()")
-    }
+    Flux.just("Hello World!")
+        .subscribeOn(Schedulers.parallel())
+        .map { message ->
+            logger.info("Phase 1: $message")
+            "$message was processed."
+        }
+        .delayElements(Duration.ofMillis(10))
+        .map { message ->
+            logger.info("Phase 2: $message")
+        }
+        .contextWrite { context ->
+            context
+                .put("traceId", generateTraceId())
+                .put("country", "Earth")
+                .put("userId", "Faye Valentine")
+        }
+        .blockLast()
+
+    logger.info("Leaving main()")
 }

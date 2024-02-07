@@ -8,15 +8,11 @@ import org.slf4j.MDC
 private val logger = LoggerFactory.getLogger("LogbackMdcClassicV1")
 
 fun main() {
-    MDC.put("traceId", generateTraceId())
     logger.info("Entering main()")
-    try {
-        processUserDataV1(UserData(userId = "Lilo", country = "Inner Space"))
-        logger.info("Going for another user.")
-        processUserDataV2(UserData(userId = "Stitch", country = "Outer Space"))
-    } finally {
-        logger.info("Leaving main()")
-    }
+    processUserDataV1(UserData(userId = "Lilo", country = "Inner Space"))
+    logger.info("Going for another user.")
+    processUserDataV2(UserData(userId = "Stitch", country = "Outer Space"))
+    logger.info("Leaving main()")
 }
 
 private fun processUserDataV1(user: UserData) {

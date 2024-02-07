@@ -14,28 +14,26 @@ import kotlin.time.Duration.Companion.milliseconds
 private val logger = LoggerFactory.getLogger("LogbackMdcCoroutinesV1")
 
 fun main(): Unit = runBlocking {
-    MDC.put("traceId", generateTraceId())
     logger.info("Entering main()")
-    try {
-        withContext(
-            MDCContext(
-                mapOf(
-                    "traceId" to generateTraceId(),
-                    "country" to "Mars",
-                    "userId" to "Spike Spiegel"
-                )
+
+    withContext(
+        MDCContext(
+            mapOf(
+                "traceId" to generateTraceId(),
+                "country" to "Mars",
+                "userId" to "Spike Spiegel"
             )
-        ) {
-            launch(Dispatchers.Default) {
-                delay(50.milliseconds)
-                logger.info("Operation #1.")
-            }
-            launch(Dispatchers.Unconfined) {
-                delay(100.milliseconds)
-                logger.info("Operation #2.")
-            }
+        )
+    ) {
+        launch(Dispatchers.Default) {
+            delay(50.milliseconds)
+            logger.info("Operation #1.")
         }
-    } finally {
-        logger.info("Leaving main()")
+        launch(Dispatchers.Unconfined) {
+            delay(100.milliseconds)
+            logger.info("Operation #2.")
+        }
     }
+
+    logger.info("Leaving main()")
 }

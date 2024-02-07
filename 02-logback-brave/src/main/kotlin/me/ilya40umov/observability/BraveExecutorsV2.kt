@@ -1,22 +1,28 @@
 package me.ilya40umov.observability
 
-import io.opentelemetry.api.baggage.Baggage
-import io.opentelemetry.context.Context
-import me.ilya40umov.observability.helper.openTelemetry
+import brave.baggage.BaggageField
+import me.ilya40umov.observability.helper.TracingFactory
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-private const val OTEL_EXECUTORS_V1 = "OtelExecutorsV1"
-private val logger = LoggerFactory.getLogger(OTEL_EXECUTORS_V1)
-private val tracer = openTelemetry.getTracer(OTEL_EXECUTORS_V1)
+private const val BRAVE_EXECUTORS_V2 = "BraveExecutorsV2"
+private val countryBaggage = BaggageField.create("country")
+private val userIdBaggage = BaggageField.create("userId")
+private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
+private val tracer = tracing.tracer()
+private val logger = LoggerFactory.getLogger(BRAVE_EXECUTORS_V2)
 
 fun main() {
     logger.info("Entering main()")
 
-    val pool1 = Context.taskWrapping(Executors.newFixedThreadPool(4))
-    val pool2 = Context.taskWrapping(Executors.newFixedThreadPool(2))
+    val pool1 = tracing.currentTraceContext().executorService(
+        Executors.newFixedThreadPool(4)
+    )
+    val pool2 = tracing.currentTraceContext().executorService(
+        Executors.newFixedThreadPool(2)
+    )
 
     listOf(
         UserData(userId = "The Little Prince", country = "Asteroid B 612"),
@@ -26,24 +32,22 @@ fun main() {
         UserData(userId = "The Pilot", country = "Earth"),
         UserData(userId = "The Fox", country = "Earth")
     ).forEach { (userId, country) ->
-        val span = tracer.spanBuilder(OTEL_EXECUTORS_V1)
-            .setAttribute("userId", userId)
-            .setAttribute("country", country)
-            .startSpan()
-        val baggage = Baggage.builder()
-            .put("userId", userId)
-            .put("country", country)
-            .build()
-        val context = Context.current().with(span)
+        val trace = tracer.newTrace()
+            .name(BRAVE_EXECUTORS_V2)
+            .tag("userId", userId)
+            .tag("country", country)
+            .start()
+        userIdBaggage.updateValue(trace.context(), userId)
+        countryBaggage.updateValue(trace.context(), country)
 
-        baggage.storeInContext(context).makeCurrent().use {
+        tracer.withSpanInScope(trace).use {
             pool1.submit {
                 logger.info("Processing - Phase 1.")
                 Thread.sleep(10L)
                 pool2.submit {
                     logger.info("Processing - Phase 2.")
                     Thread.sleep(10L)
-                    span.end()
+                    trace.finish()
                 }
             }
         }

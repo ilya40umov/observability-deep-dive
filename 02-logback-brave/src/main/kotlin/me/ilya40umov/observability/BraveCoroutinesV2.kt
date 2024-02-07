@@ -15,13 +15,12 @@ import org.slf4j.LoggerFactory
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
 
+private const val BRAVE_COROUTINES_V2 = "BraveCoroutinesV2"
 private val countryBaggage = BaggageField.create("country")
 private val userIdBaggage = BaggageField.create("userId")
-
 private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
 private val tracer = tracing.tracer()
-
-private val logger = LoggerFactory.getLogger("BraveBaggageCoroutinesV2")
+private val logger = LoggerFactory.getLogger(BRAVE_COROUTINES_V2)
 
 // see https://github.com/openzipkin/brave/issues/820
 private class TracingContextElement(
@@ -41,44 +40,43 @@ private class TracingContextElement(
 
 fun main() = runBlocking {
     logger.info("Entering main()")
-    try {
-        val coroutineScope = CoroutineScope(Dispatchers.Default)
 
-        val jobs = listOf(
-            UserData(userId = "Dwalin", country = "Erebor"),
-            UserData(userId = "Fili", country = "Erebor"),
-            UserData(userId = "Kili", country = "Erebor"),
-            UserData(userId = "Bandobras", country = "The Shire"),
-            UserData(userId = "Posco", country = "The Shire"),
-            UserData(userId = "Merry", country = "The Shire")
-        ).map { (userId, country) ->
-            val trace = tracer.newTrace()
-                .name("BraveCoroutinesV2")
-                .tag("userId", userId)
-                .tag("country", country)
-                .start()
-            userIdBaggage.updateValue(trace.context(), userId)
-            countryBaggage.updateValue(trace.context(), country)
+    val coroutineScope = CoroutineScope(Dispatchers.Default)
 
-            tracer.withSpanInScope(trace).use {
-                coroutineScope.launch(
-                    // see https://github.com/openzipkin/brave/issues/820 for more info on this solution
-                    TracingContextElement(tracing.currentTraceContext())
-                ) {
-                    logger.info("Processing - Phase 1 (before delay).")
+    val jobs = listOf(
+        UserData(userId = "Dwalin", country = "Erebor"),
+        UserData(userId = "Fili", country = "Erebor"),
+        UserData(userId = "Kili", country = "Erebor"),
+        UserData(userId = "Bandobras", country = "The Shire"),
+        UserData(userId = "Posco", country = "The Shire"),
+        UserData(userId = "Merry", country = "The Shire")
+    ).map { (userId, country) ->
+        val trace = tracer.newTrace()
+            .name(BRAVE_COROUTINES_V2)
+            .tag("userId", userId)
+            .tag("country", country)
+            .start()
+        userIdBaggage.updateValue(trace.context(), userId)
+        countryBaggage.updateValue(trace.context(), country)
+
+        tracer.withSpanInScope(trace).use {
+            coroutineScope.launch(
+                // see https://github.com/openzipkin/brave/issues/820 for more info on this solution
+                TracingContextElement(tracing.currentTraceContext())
+            ) {
+                logger.info("Processing - Phase 1 (before delay).")
+                delay(10)
+                logger.info("Processing - Phase 1 (after delay).")
+                launch {
+                    logger.info("Processing - Phase 2.")
                     delay(10)
-                    logger.info("Processing - Phase 1 (after delay).")
-                    launch {
-                        logger.info("Processing - Phase 2.")
-                        delay(10)
-                        trace.finish()
-                    }
+                    trace.finish()
                 }
             }
         }
-
-        jobs.forEach { it.join() }
-    } finally {
-        logger.info("Leaving main()")
     }
+
+    jobs.forEach { it.join() }
+
+    logger.info("Leaving main()")
 }

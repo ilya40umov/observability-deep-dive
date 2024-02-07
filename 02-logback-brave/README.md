@@ -2,11 +2,12 @@
 
 This module is showcasing how to use some APIs from Brave.
 
-* [BraveBaggageClassicV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveBaggageClassicV1.kt)
-* [BraveBaggageClassicV2.kt](src/main/kotlin/me/ilya40umov/observability/BraveBaggageClassicV2.kt)
-* [BraveBaggageCoroutinesV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveBaggageCoroutinesV1.kt)
-* [BraveBaggageCoroutinesV2.kt](src/main/kotlin/me/ilya40umov/observability/BraveBaggageCoroutinesV2.kt)
-* [BraveBaggageReactorV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveBaggageReactorV1.kt)
+* [build.gradle.kts](build.gradle.kts)
+* [BraveExecutorsV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveExecutorsV1.kt)
+* [BraveExecutorsV2.kt](src/main/kotlin/me/ilya40umov/observability/BraveExecutorsV2.kt)
+* [BraveCoroutinesV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveCoroutinesV1.kt)
+* [BraveCoroutinesV2.kt](src/main/kotlin/me/ilya40umov/observability/BraveCoroutinesV2.kt)
+* [BraveReactorV1.kt](src/main/kotlin/me/ilya40umov/observability/BraveReactorV1.kt)
 
 ## Links 
 
