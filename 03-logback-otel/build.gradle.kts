@@ -10,7 +10,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
 
     implementation("io.projectreactor:reactor-core")
-    implementation("io.micrometer:context-propagation")
 
     implementation("io.opentelemetry:opentelemetry-api")
     implementation("io.opentelemetry:opentelemetry-sdk")
@@ -19,5 +18,6 @@ dependencies {
     implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
     implementation("io.opentelemetry:opentelemetry-extension-kotlin")
     implementation("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-reactor-3.1")
 }
 

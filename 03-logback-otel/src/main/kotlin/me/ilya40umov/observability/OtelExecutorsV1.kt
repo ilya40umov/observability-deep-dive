@@ -8,10 +8,11 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-private val logger = LoggerFactory.getLogger("OtelBaggageClassicV1")
+private const val OTEL_EXECUTORS_V1 = "OtelExecutorsV1"
+private val logger = LoggerFactory.getLogger(OTEL_EXECUTORS_V1)
+private val tracer = openTelemetry.getTracer(OTEL_EXECUTORS_V1)
 
 fun main() {
-    val tracer = openTelemetry.getTracer("OtelBaggageClassicV1")
     logger.info("Entering main()")
     try {
         val pool1 = Context.taskWrapping(Executors.newFixedThreadPool(4))
@@ -25,25 +26,23 @@ fun main() {
             UserData(userId = "The Pilot", country = "Earth"),
             UserData(userId = "The Fox", country = "Earth")
         ).forEach { (userId, country) ->
-            val span = tracer.spanBuilder("OtelClassicV1")
+            val span = tracer.spanBuilder(OTEL_EXECUTORS_V1)
                 .setAttribute("userId", userId)
                 .setAttribute("country", country)
                 .startSpan()
-
-            span.makeCurrent().use {
-                val baggage = Baggage.builder()
-                    .put("userId", userId)
-                    .put("country", country)
-                    .build()
-                baggage.storeInContext(Context.current()).makeCurrent().use {
-                    pool1.submit {
-                        logger.info("Processing - Phase 1.")
+            val baggage = Baggage.builder()
+                .put("userId", userId)
+                .put("country", country)
+                .build()
+            val context = Context.current().with(span)
+            baggage.storeInContext(context).makeCurrent().use {
+                pool1.submit {
+                    logger.info("Processing - Phase 1.")
+                    Thread.sleep(10L)
+                    pool2.submit {
+                        logger.info("Processing - Phase 2.")
                         Thread.sleep(10L)
-                        pool2.submit {
-                            logger.info("Processing - Phase 2.")
-                            Thread.sleep(10L)
-                            span.end()
-                        }
+                        span.end()
                     }
                 }
             }
