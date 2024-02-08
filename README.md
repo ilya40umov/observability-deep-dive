@@ -7,8 +7,8 @@
 * [03-logback-otel](03-logback-otel) - Logback/MDC + OpenTelemetry, again with different flavors of concurrency 
 * [04-spring-classic-simple](04-spring-classic-simple) - Spring MVC examples
 * [05-spring-coroutines-simple](05-spring-coroutines-simple) - Spring WebFlux with coroutines
-* [06-service-a](06-service-a) - Service A is a simple coroutines based service calling Service B 
-* [06-service-b](06-service-b) - Service B is another coroutines-based service called by Service A
+* [06-service-a](06-service-a) - Service A is a simple service based on WebFlux/coroutines which calls Service B 
+* [06-service-b](06-service-b) - Service B is another service based on WebFlux/coroutines which gets called by Service A
 
 ## Local Infra
 
