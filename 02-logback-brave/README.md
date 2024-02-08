@@ -15,12 +15,12 @@ This module is showcasing how to use some APIs from Brave.
 
 ### TracingFactory
 
-* This factory is used in all examples in this project to create an instance of `brave.Tracing`
-* It first creates an instance of `zipkin2.reporter.brave.AsyncZipkinSpanHandler` for reporting spans to Tempo
-* Then, it proceeds with `Tracing.newBuilder()` which is provided with sampling, naming and other options
+* this factory is used in all examples in this project to create an instance of `brave.Tracing`
+* it first creates an instance of `zipkin2.reporter.brave.AsyncZipkinSpanHandler` for reporting spans to Tempo
+* then, it proceeds with `Tracing.newBuilder()` which is provided with sampling, naming and other options
 * `brave.propagation.ThreadLocalCurrentTraceContext` is created for propagating the trace context
-* This is where `brave.context.slf4j.MDCScopeDecorator` gets registered to take care of putting baggage into MDC
-* Additionally, `brave.baggage.BaggagePropagation` is configured to propagate each provided baggage field locally
+* this is where `brave.context.slf4j.MDCScopeDecorator` gets registered to take care of putting baggage into MDC
+* additionally, `brave.baggage.BaggagePropagation` is configured to propagate each provided baggage field locally
 
 ### BraveHelloWorldV1
 
