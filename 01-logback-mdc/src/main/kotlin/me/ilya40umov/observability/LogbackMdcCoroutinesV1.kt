@@ -8,7 +8,6 @@ import kotlinx.coroutines.slf4j.MDCContext
 import kotlinx.coroutines.withContext
 import me.ilya40umov.observability.helper.generateTraceId
 import org.slf4j.LoggerFactory
-import org.slf4j.MDC
 import kotlin.time.Duration.Companion.milliseconds
 
 private val logger = LoggerFactory.getLogger("LogbackMdcCoroutinesV1")

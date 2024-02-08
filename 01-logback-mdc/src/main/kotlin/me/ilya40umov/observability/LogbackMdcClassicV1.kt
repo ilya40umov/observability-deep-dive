@@ -10,8 +10,6 @@ private val logger = LoggerFactory.getLogger("LogbackMdcClassicV1")
 fun main() {
     logger.info("Entering main()")
     processUserDataV1(UserData(userId = "Lilo", country = "Inner Space"))
-    logger.info("Going for another user.")
-    processUserDataV2(UserData(userId = "Stitch", country = "Outer Space"))
     logger.info("Leaving main()")
 }
 
@@ -21,7 +19,10 @@ private fun processUserDataV1(user: UserData) {
     MDC.put("country", user.country)
     MDC.put("userId", user.userId)
     try {
-        logger.info("Processing user data V1.")
+        logger.info("Starting to process user data.")
+        logger.info("Needing to handle another user first.")
+        processUserDataV2(UserData(userId = "Stitch", country = "Outer Space"))
+        logger.info("Finishing to process user data.")
     } finally {
         // XXX if we were just to call remove() for all keys,
         //  we would lose the previous values stored in MDC
