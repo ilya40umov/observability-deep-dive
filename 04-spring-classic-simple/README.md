@@ -3,6 +3,7 @@
 This project is showcasing Micrometer APIs using classic thread-per-request approach.
 
 * [build.gradle.kts](build.gradle.kts)
+* [spring-classic-simple.http](spring-classic-simple.http)
 * [HelloControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV1.kt)
 * [HelloControllerV2.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV2.kt)
 * [HelloControllerV3.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV3.kt)

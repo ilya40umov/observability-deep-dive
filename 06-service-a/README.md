@@ -1,5 +1,6 @@
 # 06-service-a
 
+* [service-a.http](service-a.http)
 * [MyOrdersControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/MyOrdersControllerV1.kt)
 
 ## Useful commands

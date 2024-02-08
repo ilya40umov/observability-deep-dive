@@ -3,6 +3,7 @@
 This project is testing observability APIs in a coroutines / reactive setup.
 
 * [build.gradle.kts](build.gradle.kts)
+* [spring-coroutines-simple.http](spring-coroutines-simple.http)
 * [ContextPropagationConfig.kt](src/main/kotlin/me/ilya40umov/observability/config/ContextPropagationConfig.kt)
 * [HelloControllerV1.kt](src/main/kotlin/me/ilya40umov/observability/HelloControllerV1.kt)
 * [AlohaCoRouterV1.kt](src/main/kotlin/me/ilya40umov/observability/AlohaCoRouterV1.kt)
