@@ -2,10 +2,7 @@ package me.ilya40umov.observability
 
 import brave.baggage.BaggageField
 import me.ilya40umov.observability.helper.TracingFactory
-import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 
 private const val BRAVE_HELLO_WORLD_V1 = "BraveHelloWorldV1"
 private val userIdBaggage = BaggageField.create("userId")

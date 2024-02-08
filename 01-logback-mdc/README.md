@@ -15,11 +15,11 @@ This module is showcasing how to use the MDC API from Slf4j / Logback.
 * `org.slf4j.MDC` is used to manipulate values in MDC directly
 * `MDC.put()` is used to set a key/value pair and `MDC.clear()` clears all values 
 * `MDC` is internally working with an instance of `ch.qos.logback.classic.util.LogbackMDCAdapter`
-* `LogbackMDCAdapter` is working with `ThreadLocal` variables
+* `LogbackMDCAdapter` is based on `ThreadLocal` variables
 
 ### LogbackMdcClassicV1
 
-* `org.slf4j.MDC` is again used here
+* `org.slf4j.MDC` is used here again
 * `MDC.putCloseable` method does not restore previous value that was stored under the key in MDC
 * `MDC.getCopyOfContextMap` and `MDC.setContextMap` allow to capture and restore MDC state
 
