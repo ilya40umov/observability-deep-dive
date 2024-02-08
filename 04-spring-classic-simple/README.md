@@ -1,4 +1,4 @@
-# spring-classic-simple
+# 04-spring-classic-simple
 
 This project is showcasing Micrometer APIs using classic thread-per-request approach.
 

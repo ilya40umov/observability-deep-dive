@@ -5,6 +5,8 @@ include("02-logback-brave")
 include("03-logback-otel")
 include("04-spring-classic-simple")
 include("05-spring-coroutines-simple")
+include("06-service-a")
+include("06-service-b")
 
 pluginManagement {
     repositories {

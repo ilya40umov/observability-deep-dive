@@ -1,4 +1,4 @@
-# logback-brave
+# 03-logback-otel
 
 This module is showcasing how to use some APIs from OpenTelemetry.
 
