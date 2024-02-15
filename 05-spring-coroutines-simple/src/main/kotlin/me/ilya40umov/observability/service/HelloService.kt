@@ -3,10 +3,13 @@ package me.ilya40umov.observability.service
 import io.micrometer.core.instrument.kotlin.asContextElement
 import io.micrometer.observation.Observation
 import io.micrometer.observation.ObservationRegistry
+import io.micrometer.observation.contextpropagation.ObservationThreadLocalAccessor
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.future.await
+import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.awaitSingleOrNull
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.reactor.mono
 import me.ilya40umov.observability.model.Greeting
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
@@ -33,7 +36,7 @@ class HelloService(
     }
 
     private suspend fun constructGreetingFor(user: UserData): Greeting {
-        return Observation.createNotStarted("constructGreeting", observationRegistry).run {
+        return observationRegistry.observe(name = "constructGreeting") {
             logger.info("Starting to construct the greeting...")
 
             delay(10L)
@@ -54,19 +57,21 @@ class HelloService(
         }
     }
 
-    // XXX not entirely sure why something like this is not a part of Observability API yet
-    private suspend fun <T> Observation.run(block: suspend () -> T): T {
-        start()
+    // Observation API is not very Kotlin-friendly at the moment
+    private suspend fun <T> ObservationRegistry.observe(name: String, block: suspend () -> T): T {
+        val observation = Observation.createNotStarted(name, this)
+        observation.start()
         return try {
-            openScope().use { _ ->
-                withContext(observationRegistry.asContextElement()) {
-                    block()
-                }
-            }
+            // XXX this seems to be the safest option of making the new observation current
+            mono(observationRegistry.asContextElement() + Dispatchers.Unconfined) {
+                block()
+            }.contextWrite { context ->
+                context.put(ObservationThreadLocalAccessor.KEY, observation)
+            }.awaitSingle()
         } catch (error: Throwable) {
             throw error
         } finally {
-            stop()
+            observation.stop()
         }
     }
 }

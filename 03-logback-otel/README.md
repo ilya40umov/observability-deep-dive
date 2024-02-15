@@ -53,3 +53,6 @@ This module is showcasing how to use some APIs from OpenTelemetry.
 
 * https://opentelemetry.io/docs/languages/java/instrumentation/
 * https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
+* [io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/logback/logback-mdc-1.0/library)
+* [io.opentelemetry:opentelemetry-extension-kotlin](https://github.com/open-telemetry/opentelemetry-java/tree/main/extensions/kotlin)
+* [io.opentelemetry.instrumentation:opentelemetry-reactor-3.1](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/reactor/reactor-3.1)

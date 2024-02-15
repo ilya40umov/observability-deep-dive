@@ -25,7 +25,7 @@ class HelloService(
     }
 
     private fun constructGreetingFor(user: UserData): Greeting {
-        return Observation.start("constructGreeting", observationRegistry).observe(Supplier {
+        return observationRegistry.observeNotNull(name = "constructGreeting") {
             logger.info("Starting to construct the greeting...")
             Thread.sleep(10)
             Greeting(
@@ -33,6 +33,10 @@ class HelloService(
             ).also {
                 logger.info("Greeting constructed successfully")
             }
-        })!!
+        }
     }
+
+    // Observation API is not very Kotlin-friendly at the moment
+    private fun <T> ObservationRegistry.observeNotNull(name: String, block: () -> T): T =
+        Observation.start(name, this).observe(Supplier { block() })!!
 }

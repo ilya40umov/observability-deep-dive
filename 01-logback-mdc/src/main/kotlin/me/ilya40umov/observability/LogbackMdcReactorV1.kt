@@ -15,6 +15,8 @@ fun main() {
     logger.info("Entering main()")
 
     Hooks.enableAutomaticContextPropagation()
+    // TODO move to Slf4jThreadLocalAccessor?
+    // https://github.com/micrometer-metrics/context-propagation/commit/c1d2fd41bfc56d33ddc5e844f2a9fba4e82ecf15
     listOf("traceId", "userId", "country").forEach { field ->
         ContextRegistry.getInstance()
             .registerThreadLocalAccessor(

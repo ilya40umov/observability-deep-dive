@@ -18,11 +18,14 @@ dependencies {
 
     implementation("com.github.loki4j:loki-logback-appender")
 
+    // use Brave for tracing
     implementation("io.micrometer:micrometer-tracing-bridge-brave")
     implementation("io.zipkin.reporter2:zipkin-sender-urlconnection")
     implementation("io.zipkin.reporter2:zipkin-reporter-brave")
-    // implementation("io.micrometer:micrometer-tracing-bridge-otel")
-    // implementation("io.opentelemetry:opentelemetry-exporter-otlp")
+
+    // use Otel for tracing
+    /*implementation("io.micrometer:micrometer-tracing-bridge-otel")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp")*/
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
