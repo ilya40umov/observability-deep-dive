@@ -60,10 +60,3 @@ This module is showcasing how to use some APIs from Brave.
 
 * here we again rely on `io.micrometer:context-propagation` library
 * `ContextRegistry.getInstance().registerThreadLocalAccessor()` is used to manipulate `tracing.currentTraceContext()`
-
-## Links 
-
-### Brave
-
-* https://github.com/openzipkin/brave/tree/master/brave
-* https://github.com/openzipkin/brave/issues/820

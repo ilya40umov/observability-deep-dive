@@ -37,25 +37,3 @@ This module is showcasing how to use the MDC API from Slf4j / Logback.
 * afterward, we can interact with `io.micrometer.context.ContextRegistry` via `registerThreadLocalAccessor`
 * this allows us to make context propagation library aware of thread local state we would like to maintain
 * at this point we can use `contextWrite` on `Flux` to set the actual values we would like to propagate
-
-## Links 
-
-### Logback
-
-* https://logback.qos.ch/manual/
-
-### Loki4j Logback
-
-* https://loki4j.github.io/loki-logback-appender/docs/configuration
-
-### Coroutines & MDC
-
-* https://github.com/Kotlin/kotlinx.coroutines/tree/master/integration/kotlinx-coroutines-slf4j
-* https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/as-context-element.html
-
-### Context Propagation With Project Reactor
-
-* https://micrometer.io/docs/contextPropagation
-* https://spring.io/blog/2023/03/28/context-propagation-with-project-reactor-1-the-basics/
-* https://spring.io/blog/2023/03/29/context-propagation-with-project-reactor-2-the-bumpy-road-of-spring-cloud/
-* https://spring.io/blog/2023/03/30/context-propagation-with-project-reactor-3-unified-bridging-between-reactive/

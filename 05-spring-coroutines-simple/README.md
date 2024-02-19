@@ -25,7 +25,6 @@ This project is testing observability APIs in a coroutines / reactive setup.
 * implements `io.micrometer.tracing.contextpropagation.ObservationAwareSpanThreadLocalAccessor` to put and restore current Span
 * defines `io.micrometer.tracing.handler.TracingObservationHandler` that reacts to Observation lifecycle
 
-## Links
+### HelloControllerV1
 
-* [Observability with Spring Boot 3](https://spring.io/blog/2022/10/12/observability-with-spring-boot-3)
-* [Distributed Tracing Reference Guide](https://micrometer.io/docs/tracing)
+TBD

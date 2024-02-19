@@ -35,9 +35,4 @@ This project is showcasing Micrometer APIs using classic thread-per-request appr
 * Observation is created by `org.springframework.web.filter.ServerHttpObservationFilter`
 * `PropagatingReceiverTracingObservationHandler` reacts to Observation getting created and creates a span via Tracer
 * Observation is then put into scope by `ServerHttpObservationFilter`
-* `PropagatingReceiverTracingObservationHandler` reacts to it and makes the associated span "current" 
-
-## Links
-
-* [Observability with Spring Boot 3](https://spring.io/blog/2022/10/12/observability-with-spring-boot-3)
-* [Distributed Tracing Reference Guide](https://micrometer.io/docs/tracing)
+* `PropagatingReceiverTracingObservationHandler` reacts to it and makes the associated span "current"

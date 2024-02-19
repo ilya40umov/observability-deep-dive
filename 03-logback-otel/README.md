@@ -46,13 +46,3 @@ This module is showcasing how to use some APIs from OpenTelemetry.
 * `ContextPropagationOperator` comes from `io.opentelemetry.instrumentation:opentelemetry-reactor-3.1` library
 * and first needs to be created and registered via `ContextPropagationOperator.create().registerOnEachOperator()`
 * afterward, `ContextPropagationOperator.storeOpenTelemetryContext(reactorContext, context)` can be used to add span context into the reactor context
-
-## Links 
-
-### Otel
-
-* https://opentelemetry.io/docs/languages/java/instrumentation/
-* https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
-* [io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/logback/logback-mdc-1.0/library)
-* [io.opentelemetry:opentelemetry-extension-kotlin](https://github.com/open-telemetry/opentelemetry-java/tree/main/extensions/kotlin)
-* [io.opentelemetry.instrumentation:opentelemetry-reactor-3.1](https://github.com/open-telemetry/opentelemetry-java-instrumentation/tree/main/instrumentation/reactor/reactor-3.1)
