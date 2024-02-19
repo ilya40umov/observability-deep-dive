@@ -36,7 +36,7 @@ subprojects {
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
         constraints {
-            "implementation"("ch.qos.logback:logback-classic:1.4.12")
+            "implementation"("ch.qos.logback:logback-classic:1.5.0")
             "implementation"("com.github.loki4j:loki-logback-appender:1.4.2")
             "implementation"("io.projectreactor:reactor-core:3.6.2")
             "implementation"("io.micrometer:context-propagation:1.1.0")
