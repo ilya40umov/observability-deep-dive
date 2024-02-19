@@ -6,7 +6,6 @@ import me.ilya40umov.observability.model.Greeting
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import java.util.function.Supplier
 
 @Service
 class HelloService(
@@ -25,7 +24,7 @@ class HelloService(
     }
 
     private fun constructGreetingFor(user: UserData): Greeting {
-        return observationRegistry.observeNotNull(name = "constructGreeting") {
+        return Observation.createNotStarted("constructGreeting", observationRegistry).observeNotNull {
             logger.info("Starting to construct the greeting...")
             Thread.sleep(10)
             Greeting(
@@ -37,6 +36,19 @@ class HelloService(
     }
 
     // Observation API is not very Kotlin-friendly at the moment
-    private fun <T> ObservationRegistry.observeNotNull(name: String, block: () -> T): T =
-        Observation.start(name, this).observe(Supplier { block() })!!
+    fun <T : Any> Observation.observeNotNull(block: () -> T): T = observeBlock(block)
+
+    private fun <T> Observation.observeBlock(block: () -> T): T {
+        start()
+        return try {
+            openScope().use {
+                block()
+            }
+        } catch (error: Throwable) {
+            error(error)
+            throw error
+        } finally {
+            stop()
+        }
+    }
 }

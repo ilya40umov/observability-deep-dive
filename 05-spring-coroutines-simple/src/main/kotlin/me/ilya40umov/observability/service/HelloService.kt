@@ -38,7 +38,7 @@ class HelloService(
     }
 
     private suspend fun constructGreetingFor(user: UserData): Greeting {
-        return observationRegistry.observe(name = "constructGreeting") {
+        return Observation.createNotStarted("constructGreeting", observationRegistry).observeAndWait {
             logger.info("Starting to construct the greeting...")
 
             delay(10L)
@@ -60,15 +60,19 @@ class HelloService(
     }
 
     // Observation API is not very Kotlin-friendly at the moment
-    private suspend fun <T> ObservationRegistry.observe(name: String, block: suspend () -> T): T {
-        val observation = Observation.start(name, this)
-        val coroutineContext = currentCoroutineContext().minusKey(Job.Key)
-        return mono(coroutineContext + observationRegistry.asContextElement()) {
-            block()
-        }.contextWrite { context ->
-            context.put(ObservationThreadLocalAccessor.KEY, observation)
-        }.doOnTerminate {
-            observation.stop()
-        }.awaitSingle()
+    private suspend fun <T> Observation.observeAndWait(block: suspend () -> T): T {
+        start()
+        return withContext(
+            openScope().use { observationRegistry.asContextElement() }
+        ) {
+            try {
+                block()
+            } catch (error: Throwable) {
+                error(error)
+                throw error
+            } finally {
+                stop()
+            }
+        }
     }
 }
