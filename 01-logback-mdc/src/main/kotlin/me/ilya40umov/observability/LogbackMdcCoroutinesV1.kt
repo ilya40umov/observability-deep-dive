@@ -16,6 +16,8 @@ fun main(): Unit = runBlocking {
     logger.info("Entering main()")
 
     withContext(
+        // MDCContext implements ThreadContextElement,
+        //  which in turn implements CoroutineContext.Element
         MDCContext(
             mapOf(
                 "traceId" to generateTraceId(),
