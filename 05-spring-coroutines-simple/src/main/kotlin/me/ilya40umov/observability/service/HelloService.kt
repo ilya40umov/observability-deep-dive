@@ -12,6 +12,7 @@ import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import kotlinx.coroutines.reactor.mono
 import kotlinx.coroutines.withContext
+import me.ilya40umov.observability.aspect.ObservedSuspending
 import me.ilya40umov.observability.model.Greeting
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
@@ -28,8 +29,9 @@ class HelloService(
 
     private val logger = LoggerFactory.getLogger(HelloService::class.java)
 
+    @ObservedSuspending(name = "sayHelloTo")
     suspend fun sayHelloTo(user: UserData): Greeting {
-        logger.info("Entering sayHelloTo()")
+        logger.info("Entering sayHelloTo(). Observation: ${observationRegistry.currentObservation?.context?.name}")
         return try {
             constructGreetingFor(user)
         } finally {
