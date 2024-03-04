@@ -32,7 +32,7 @@ subprojects {
         val otelVersion = "1.31.0"
         val otelAlphaVersion = "1.31.0-alpha"
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
-        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.7.3"))
+        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
         constraints {
