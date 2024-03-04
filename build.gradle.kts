@@ -39,7 +39,7 @@ subprojects {
             "implementation"("ch.qos.logback:logback-classic:1.4.12")
             "implementation"("com.github.loki4j:loki-logback-appender:1.4.2")
             "implementation"("io.projectreactor:reactor-core:3.6.2")
-            "implementation"("io.micrometer:context-propagation:1.1.0")
+            "implementation"("io.micrometer:context-propagation:1.1.1")
             "implementation"("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:$otelAlphaVersion")
             "implementation"("io.opentelemetry.instrumentation:opentelemetry-reactor-3.1:$otelAlphaVersion")
         }
