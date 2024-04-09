@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.2.2" apply false
+    id("org.springframework.boot") version "3.2.4" apply false
     id("io.spring.dependency-management") version "1.1.4" apply false
     kotlin("jvm") version "1.9.22" apply false
     kotlin("plugin.spring") version "1.9.22" apply false
@@ -32,7 +32,9 @@ subprojects {
         val otelVersion = "1.37.0"
         val otelAlphaVersion = "1.31.0-alpha"
         val kotestVersion = "5.8.0"
+        // TODO update brave & zipkin reporter as soon as Spring Boot updates it
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
+        "implementation"(platform("io.zipkin.reporter2:zipkin-reporter-bom:2.16.3"))
         "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
