@@ -29,7 +29,7 @@ subprojects {
         }
     }
     dependencies {
-        val otelVersion = "1.31.0"
+        val otelVersion = "1.37.0"
         val otelAlphaVersion = "1.31.0-alpha"
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
         "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
