@@ -31,10 +31,16 @@ subprojects {
     dependencies {
         val otelVersion = "1.37.0"
         val otelAlphaVersion = "1.31.0-alpha"
+        val kotestVersion = "5.8.0"
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
         "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
+        "implementation"(platform("org.junit:junit-bom:5.10.2"))
+        "testImplementation"("io.kotest:kotest-runner-junit5:$kotestVersion")
+        "testImplementation"("io.kotest:kotest-assertions-core:$kotestVersion")
+        "testImplementation"("org.junit.jupiter:junit-jupiter-api")
+        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
         constraints {
             "implementation"("ch.qos.logback:logback-classic:1.5.4")
             "implementation"("com.github.loki4j:loki-logback-appender:1.4.2")
@@ -52,7 +58,9 @@ subprojects {
             }
         }
         withType<Test> {
-            useJUnitPlatform()
+            useJUnitPlatform {
+                testLogging.showStandardStreams = true
+            }
         }
     }
 }

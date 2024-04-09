@@ -6,7 +6,7 @@ import org.slf4j.MDC
 
 private val logger = LoggerFactory.getLogger("LogbackHelloWorldV1")
 
-fun main() {
+fun logbackHelloWorldV1() {
     logger.info("Entering main()")
 
     MDC.put("traceId", generateTraceId())

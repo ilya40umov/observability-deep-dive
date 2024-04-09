@@ -7,7 +7,7 @@ import org.slf4j.MDC
 
 private val logger = LoggerFactory.getLogger("LogbackMdcClassicV1")
 
-fun main() {
+fun logbackMdcClassicV1() {
     logger.info("Entering main()")
     processUserDataV1(UserData(userId = "Lilo", country = "Inner Space"))
     logger.info("Leaving main()")

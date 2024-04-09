@@ -11,7 +11,7 @@ import java.time.Duration
 
 private val logger = LoggerFactory.getLogger("LogbackMdcReactorV1")
 
-fun main() {
+fun logbackMdcReactorV1() {
     logger.info("Entering main()")
 
     Hooks.enableAutomaticContextPropagation()

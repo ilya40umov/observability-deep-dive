@@ -12,7 +12,7 @@ import kotlin.time.Duration.Companion.milliseconds
 
 private val logger = LoggerFactory.getLogger("LogbackMdcCoroutinesV1")
 
-fun main(): Unit = runBlocking {
+fun logbackMdcCoroutinesV1(): Unit = runBlocking {
     logger.info("Entering main()")
 
     withContext(
