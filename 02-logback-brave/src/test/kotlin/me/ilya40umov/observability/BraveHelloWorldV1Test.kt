@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestInstance
 class BraveHelloWorldV1Test : BraveBaseTest(loggerName = BRAVE_HELLO_WORLD_V1) {
 
     @Test
-    fun `braveHelloWorldV1() should add traceId and userId to Yoda's message`() {
+    fun `braveHelloWorldV1() should add traceId and userId to Yoda's log message`() {
         braveHelloWorldV1()
 
         val message = appender.findFirstByMessage("Patience you must have, my young Padawan.")

@@ -4,10 +4,10 @@ import kotlin.system.exitProcess
 
 fun main() {
     val examples = listOf(
-        "LogbackHelloWorldV1" to ::logbackHelloWorldV1,
-        "LogbackMdcClassicV1" to ::logbackMdcClassicV1,
-        "LogbackMdcCoroutinesV1" to ::logbackMdcCoroutinesV1,
-        "LogbackMdcReactorV1" to ::logbackMdcReactorV1,
+        "OtelHelloWorldV1" to ::otelHelloWorldV1,
+        "OtelExecutorsV1" to ::otelExecutorsV1,
+        "OtelCoroutinesV1" to ::otelCoroutinesV1,
+        "OtelReactorV1" to ::otelReactorV1,
     )
 
     println("Select example:")

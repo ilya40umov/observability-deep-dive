@@ -5,11 +5,12 @@ import io.opentelemetry.context.Context
 import me.ilya40umov.observability.helper.openTelemetry
 import org.slf4j.LoggerFactory
 
-private const val OTEL_HELLO_WORLD_V1 = "OtelHelloWorldV1"
+const val OTEL_HELLO_WORLD_V1 = "OtelHelloWorldV1"
+
 private val logger = LoggerFactory.getLogger(OTEL_HELLO_WORLD_V1)
 private val tracer = openTelemetry.getTracer(OTEL_HELLO_WORLD_V1)
 
-fun main() {
+fun otelHelloWorldV1() {
     logger.info("Entering main()")
 
     val span = tracer.spanBuilder(OTEL_HELLO_WORLD_V1)

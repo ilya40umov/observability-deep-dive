@@ -12,13 +12,14 @@ import reactor.core.publisher.ParallelFlux
 import reactor.core.scheduler.Schedulers
 import java.time.Duration
 
-private const val OTEL_REACTOR_V1 = "OtelReactorV1"
+const val OTEL_REACTOR_V1 = "OtelReactorV1"
+
 private val tracer = openTelemetry.getTracer(OTEL_REACTOR_V1).also {
     ContextPropagationOperator.create().registerOnEachOperator()
 }
 private val logger = LoggerFactory.getLogger(OTEL_REACTOR_V1)
 
-fun main(): Unit = runBlocking {
+fun otelReactorV1(): Unit = runBlocking {
     logger.info("Entering main()")
 
     val fluxes = listOf(

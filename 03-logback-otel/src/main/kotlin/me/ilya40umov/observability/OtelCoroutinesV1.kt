@@ -12,11 +12,12 @@ import me.ilya40umov.observability.helper.openTelemetry
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
 
-private const val OTEL_COROUTINES_V1 = "OtelCoroutinesV1"
+const val OTEL_COROUTINES_V1 = "OtelCoroutinesV1"
+
 private val tracer = openTelemetry.getTracer(OTEL_COROUTINES_V1)
 private val logger = LoggerFactory.getLogger(OTEL_COROUTINES_V1)
 
-fun main(): Unit = runBlocking {
+fun otelCoroutinesV1(): Unit = runBlocking {
     logger.info("Entering main()")
 
     val coroutineScope = CoroutineScope(Dispatchers.Default)

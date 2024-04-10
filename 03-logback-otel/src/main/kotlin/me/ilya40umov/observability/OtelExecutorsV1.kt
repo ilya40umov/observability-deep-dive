@@ -8,11 +8,12 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-private const val OTEL_EXECUTORS_V1 = "OtelExecutorsV1"
+const val OTEL_EXECUTORS_V1 = "OtelExecutorsV1"
+
 private val logger = LoggerFactory.getLogger(OTEL_EXECUTORS_V1)
 private val tracer = openTelemetry.getTracer(OTEL_EXECUTORS_V1)
 
-fun main() {
+fun otelExecutorsV1() {
     logger.info("Entering main()")
 
     val pool1 = Context.taskWrapping(Executors.newFixedThreadPool(4))

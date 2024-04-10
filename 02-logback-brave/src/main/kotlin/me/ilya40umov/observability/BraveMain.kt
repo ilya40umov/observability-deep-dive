@@ -23,7 +23,7 @@ fun main() {
             print("> ")
             continue
         }
-        examples[line.toInt()].second()
+        examples[line.toInt() - 1].second()
         exitProcess(0)
     }
 }
