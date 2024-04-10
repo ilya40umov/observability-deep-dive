@@ -9,7 +9,9 @@ import reactor.core.publisher.Hooks
 import reactor.core.scheduler.Schedulers
 import java.time.Duration
 
-private val logger = LoggerFactory.getLogger("LogbackMdcReactorV1")
+const val LOGBACK_MDC_REACTOR_V1 = "LogbackMdcReactorV1"
+
+private val logger = LoggerFactory.getLogger(LOGBACK_MDC_REACTOR_V1)
 
 fun logbackMdcReactorV1() {
     logger.info("Entering main()")

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
-class LogbackMdcCoroutinesV1Test : LogbackMdcBaseTest(loggerName = "LogbackMdcCoroutinesV1") {
+class LogbackMdcCoroutinesV1Test : LogbackBaseTest(loggerName = LOGBACK_MDC_COROUTINES_V1) {
 
     @Test
     fun `logbackMdcCoroutinesV1() should add all mdc fields for both messages`() {

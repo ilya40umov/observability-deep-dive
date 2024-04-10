@@ -15,7 +15,8 @@ import org.slf4j.LoggerFactory
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
 
-private const val BRAVE_COROUTINES_V2 = "BraveCoroutinesV2"
+const val BRAVE_COROUTINES_V2 = "BraveCoroutinesV2"
+
 private val countryBaggage = BaggageField.create("country")
 private val userIdBaggage = BaggageField.create("userId")
 private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
@@ -38,7 +39,7 @@ private class TracingContextElement(
     }
 }
 
-fun main() = runBlocking {
+fun braveCoroutinesV2() = runBlocking {
     logger.info("Entering main()")
 
     val coroutineScope = CoroutineScope(Dispatchers.Default)

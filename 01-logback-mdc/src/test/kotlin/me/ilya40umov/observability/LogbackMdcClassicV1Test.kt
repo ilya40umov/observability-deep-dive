@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
-class LogbackMdcClassicV1Test : LogbackMdcBaseTest(loggerName = "LogbackMdcClassicV1") {
+class LogbackMdcClassicV1Test : LogbackBaseTest(loggerName = LOGBACK_MDC_CLASSIC_V1) {
 
     @Test
     fun `logbackMdcClassicV1() should add all mdc fields for first Lilo message`() {

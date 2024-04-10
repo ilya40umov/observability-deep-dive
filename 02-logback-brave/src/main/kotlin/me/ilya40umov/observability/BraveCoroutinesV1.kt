@@ -11,14 +11,15 @@ import me.ilya40umov.observability.helper.TracingFactory
 import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
 
-private const val BRAVE_COROUTINES_V1 = "BraveCoroutinesV1"
+const val BRAVE_COROUTINES_V1 = "BraveCoroutinesV1"
+
 private val countryBaggage = BaggageField.create("country")
 private val userIdBaggage = BaggageField.create("userId")
 private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
 private val tracer = tracing.tracer()
 private val logger = LoggerFactory.getLogger(BRAVE_COROUTINES_V1)
 
-fun main() = runBlocking {
+fun braveCoroutinesV1() = runBlocking {
     logger.info("Entering main()")
 
     val coroutineScope = CoroutineScope(Dispatchers.Default)

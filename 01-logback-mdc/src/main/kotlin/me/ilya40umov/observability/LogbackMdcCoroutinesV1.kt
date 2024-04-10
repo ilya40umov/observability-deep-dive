@@ -10,7 +10,9 @@ import me.ilya40umov.observability.helper.generateTraceId
 import org.slf4j.LoggerFactory
 import kotlin.time.Duration.Companion.milliseconds
 
-private val logger = LoggerFactory.getLogger("LogbackMdcCoroutinesV1")
+const val LOGBACK_MDC_COROUTINES_V1 = "LogbackMdcCoroutinesV1"
+
+private val logger = LoggerFactory.getLogger(LOGBACK_MDC_COROUTINES_V1)
 
 fun logbackMdcCoroutinesV1(): Unit = runBlocking {
     logger.info("Entering main()")

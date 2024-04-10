@@ -4,12 +4,13 @@ import brave.baggage.BaggageField
 import me.ilya40umov.observability.helper.TracingFactory
 import org.slf4j.LoggerFactory
 
-private const val BRAVE_HELLO_WORLD_V1 = "BraveHelloWorldV1"
+const val BRAVE_HELLO_WORLD_V1 = "BraveHelloWorldV1"
+
 private val userIdBaggage = BaggageField.create("userId")
 private val tracer = TracingFactory.tracing(userIdBaggage).tracer()
 private val logger = LoggerFactory.getLogger(BRAVE_HELLO_WORLD_V1)
 
-fun main() {
+fun braveHelloWorldV1() {
     logger.info("Entering main()")
 
     val trace = tracer.newTrace()

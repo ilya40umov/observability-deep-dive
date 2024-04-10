@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
-class LogbackHelloWorldV1Test : LogbackMdcBaseTest(loggerName = "LogbackHelloWorldV1") {
+class LogbackHelloWorldV1Test : LogbackBaseTest(loggerName = LOGBACK_HELLO_WORLD_V1) {
 
     @Test
     fun `logbackHelloWorldV1() should add traceId and userId to Arthur's message`() {

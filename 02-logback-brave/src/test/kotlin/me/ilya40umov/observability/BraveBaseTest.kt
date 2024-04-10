@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.slf4j.LoggerFactory
 
-abstract class LogbackMdcBaseTest(
+abstract class BraveBaseTest(
     loggerName: String,
 ) {
     protected val appender = ListAppender<ILoggingEvent>()
@@ -24,13 +24,12 @@ abstract class LogbackMdcBaseTest(
         logger.detachAppender(appender)
     }
 
-    protected fun ListAppender<ILoggingEvent>.allUniqueTraceIds(): Set<String> =
-        list.mapNotNull { it.mdcPropertyMap["traceId"] }.toSet()
+    protected fun List<ILoggingEvent>.getUniqueValuesUnderMdcKey(key: String): Set<String> =
+        mapNotNull { it.mdcPropertyMap[key] }.toSet()
 
-    protected fun ListAppender<ILoggingEvent>.findByMessage(message: String): ILoggingEvent =
+    protected fun ListAppender<ILoggingEvent>.findFirstByMessage(message: String): ILoggingEvent =
         list.first { it.message == message }
 
-    protected fun ListAppender<ILoggingEvent>.findByMessagePrefix(prefix: String): ILoggingEvent =
-        list.first { it.message.startsWith(prefix) }
-
+    protected fun ListAppender<ILoggingEvent>.findAllByMessage(message: String): List<ILoggingEvent> =
+        list.filter { it.message == message }
 }

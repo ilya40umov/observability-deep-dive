@@ -5,7 +5,9 @@ import me.ilya40umov.observability.model.UserData
 import org.slf4j.LoggerFactory
 import org.slf4j.MDC
 
-private val logger = LoggerFactory.getLogger("LogbackMdcClassicV1")
+const val LOGBACK_MDC_CLASSIC_V1 = "LogbackMdcClassicV1"
+
+private val logger = LoggerFactory.getLogger(LOGBACK_MDC_CLASSIC_V1)
 
 fun logbackMdcClassicV1() {
     logger.info("Entering main()")

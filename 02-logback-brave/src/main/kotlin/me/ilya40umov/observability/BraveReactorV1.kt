@@ -12,14 +12,15 @@ import reactor.core.publisher.ParallelFlux
 import reactor.core.scheduler.Schedulers
 import java.time.Duration
 
-private const val BRAVE_REACTOR_V1 = "BraveReactorV1"
+const val BRAVE_REACTOR_V1 = "BraveReactorV1"
+
 private val countryBaggage = BaggageField.create("country")
 private val userIdBaggage = BaggageField.create("userId")
 private val tracing = TracingFactory.tracing(countryBaggage, userIdBaggage)
 private val tracer = tracing.tracer()
 private val logger = LoggerFactory.getLogger(BRAVE_REACTOR_V1)
 
-fun main(): Unit = runBlocking {
+fun braveReactorV1(): Unit = runBlocking {
     logger.info("Entering main()")
 
     Hooks.enableAutomaticContextPropagation()

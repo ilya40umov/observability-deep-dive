@@ -7,13 +7,14 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-private const val BRAVE_EXECUTORS_V1 = "BraveExecutorsV1"
+const val BRAVE_EXECUTORS_V1 = "BraveExecutorsV1"
+
 private val countryBaggage = BaggageField.create("country")
 private val userIdBaggage = BaggageField.create("userId")
 private val tracer = TracingFactory.tracing(countryBaggage, userIdBaggage).tracer()
 private val logger = LoggerFactory.getLogger(BRAVE_EXECUTORS_V1)
 
-fun main() {
+fun braveExecutorsV1() {
     logger.info("Entering main()")
     val pool1 = Executors.newFixedThreadPool(2)
     val pool2 = Executors.newFixedThreadPool(4)
