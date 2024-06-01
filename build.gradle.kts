@@ -35,7 +35,7 @@ subprojects {
         val kotestVersion = "5.8.1"
         // TODO update brave & zipkin reporter as soon as Spring Boot updates their versions
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
-        "implementation"(platform("io.zipkin.reporter2:zipkin-reporter-bom:2.16.3"))
+        "implementation"(platform("io.zipkin.reporter2:zipkin-reporter-bom:3.4.0"))
         "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
