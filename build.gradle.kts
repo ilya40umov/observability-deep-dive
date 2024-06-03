@@ -32,7 +32,7 @@ subprojects {
     dependencies {
         val otelVersion = "1.38.0"
         val otelAlphaVersion = "1.31.0-alpha"
-        val kotestVersion = "5.8.1"
+        val kotestVersion = "5.9.0"
         // TODO update brave & zipkin reporter as soon as Spring Boot updates their versions
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
         "implementation"(platform("io.zipkin.reporter2:zipkin-reporter-bom:3.4.0"))
