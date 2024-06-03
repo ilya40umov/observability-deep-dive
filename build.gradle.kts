@@ -45,7 +45,7 @@ subprojects {
         "testImplementation"("org.junit.jupiter:junit-jupiter-api")
         "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
         constraints {
-            "implementation"("ch.qos.logback:logback-classic:1.5.4")
+            "implementation"("ch.qos.logback:logback-classic:1.5.6")
             "implementation"("com.github.loki4j:loki-logback-appender:1.5.1")
             "implementation"("io.projectreactor:reactor-core:3.6.5")
             "implementation"("io.micrometer:context-propagation:1.1.1")
