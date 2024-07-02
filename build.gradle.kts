@@ -36,7 +36,7 @@ subprojects {
         // TODO update brave & zipkin reporter as soon as Spring Boot updates their versions
         "implementation"(platform("io.zipkin.brave:brave-bom:5.16.0"))
         "implementation"(platform("io.zipkin.reporter2:zipkin-reporter-bom:3.4.0"))
-        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.0"))
+        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.8.1"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
         "implementation"(platform("io.opentelemetry:opentelemetry-bom-alpha:$otelAlphaVersion"))
         "implementation"(platform("org.junit:junit-bom:5.10.2"))
