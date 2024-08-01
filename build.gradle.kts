@@ -46,7 +46,7 @@ subprojects {
         "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
         constraints {
             "implementation"("ch.qos.logback:logback-classic:1.5.6")
-            "implementation"("com.github.loki4j:loki-logback-appender:1.5.1")
+            "implementation"("com.github.loki4j:loki-logback-appender:1.5.2")
             "implementation"("io.projectreactor:reactor-core:3.6.7")
             "implementation"("io.micrometer:context-propagation:1.1.1")
             "implementation"("io.opentelemetry.instrumentation:opentelemetry-logback-mdc-1.0:$otelAlphaVersion")
